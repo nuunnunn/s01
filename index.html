@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리반 학생</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+
+            // .done(function () {
+            //     alert("Data Saved: " + msg);
+            // });
+    </script>
+</head>
+
+<body>
+
+    <div class="wrap"></div>
+    <input id="myInput" type="text" placeholder="Search..">
+
+    <script>
+
+        $.ajax({
+            url: "./class_s01.json",
+            success: function (data) {
+                if (data.length > 0) {
+                    const tb = $("<table>");
+
+                    for (var i in data) {
+                        let id = data[i].id;
+                        let name = data[i].name;
+                        let team = data.team;
+
+                        let row = $("<tr>").append(
+                            $("<td>").text(id),
+                            $("<td>").text(name),
+                            $("<td>").text(team)
+                        );
+
+                        tb.append(row)
+                    }
+
+                    $('.wrap').append(tb)
+                }
+            }
+        });
+
+        $('myInput').on('keyup', function () {
+            var value = $(this).val();
+            $('.wrap tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            })
+        })
+    </script>
+</body>
+
+</html>
