@@ -20,7 +20,6 @@
     <input id="myInput" type="text" placeholder="Search..">
 
     <script>
-
         $.ajax({
             url: "./class_s01.json",
             success: function (data) {
@@ -30,7 +29,7 @@
                     for (var i in data) {
                         let id = data[i].id;
                         let name = data[i].name;
-                        let team = data.team;
+                        let team = data[i].team;
 
                         let row = $("<tr>").append(
                             $("<td>").text(id),
